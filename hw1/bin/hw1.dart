@@ -4,6 +4,7 @@ void printInteger(int aNumber) {
   // $: Similar to pointer, address
 }
 
+
 // This is where the app starts executing.
 void main() {
   var number = 42; // Declare and initialize a variable.
@@ -42,6 +43,7 @@ void main() {
   const bar = 1000000;
   const double atm = 1.01325 * bar;
 
+
 //The const keyword can also be used to create constant values. 
   var foo = const[];
   const baz = [];
@@ -53,6 +55,66 @@ void main() {
 const list = [i as int]; //typecast
 const map = {if (i is int) i: 'int'}; //use 'is' as typecheck and collection if
 
+
+//There are two variables that represent numbers, int and double. num is a variable that is the superclass of int and double
+num x = 1;// x can have both int and double values
+double z = 1;// equivalent to double z = 1.0, intengers will be converted automatically to doubles when necessary
+
+
+//bitwise operation
+//shift: assert((3 << 1) == 6)// 0011  ->  0110  
+//OR: assert((3 | 4) == 7)// 0011 | 0100 ==0111
+
+
+//strings
+var s1 = 'Single quotes work well for string literals.';
+var s2 = 'Double quotes work just as well.';
+var s3 = 'It\'s easy to escape the string delimiter.';//which means you can use a '\' before a single quotes to avoid the ambiguity.
+var s4 = "It's even easier to use the other delimiter."; //while in the sentences of double quotes, '\' is not necessary.
+
+
+//expressions: use ${expression} to put the value of an expression inside a string, if the expression is an identifier, you can skip the '{}'
+var s = 'string interpolation';
+assert('Dart has $s, which is very handy.' //this is equivelant to 'Dart has string interpolation, which is very handy.')
+assert('That deserves all caps. ${s.toUpperCase()} is very handy!' //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
+
+
+//use '+' to connect multiple strings
+var s = 'The + operator ' + 'works, as well.';
+assert(s == 'The + operator works, as well.');
+
+
+//multi-line strings
+var s1 = '''
+You can create
+multi-line strings like this one.
+''';
+var s2 = """This is also a 
+multi-line string.""";
+
+
+//raw string: You can create a "raw" string by prefixing it with r add a prefix "r". 
+var s = r'In a raw string, nothing will be treat specially, not even \n gets special treatment, '\n' will be output instead of wrap. '
+
+
+//bool: you can't use code like  "if(nonbooleanValue)" or"assert(nonbooleanValue)", instead, explicitly check for values
+//Check for an empty string
+var fullName = '';
+assert(fullName.isEmpty);
+//Check for zero
+var hitPoints = 0;
+assert(hitPoints <= 0);
+//Check for null
+var unicorn;
+assert(unicorn == null);
+//Check for NaN
+var iMeantToDoThis = 0 / 0;
+assert(iMeantToDoThis.isNaN);
+
+
+//Lists
+var list = [1, 2, 3];
+//list has type list<int>.If you try to add non-integer objects to this list, the analyzer or runtime raises an error
 
 
 }
