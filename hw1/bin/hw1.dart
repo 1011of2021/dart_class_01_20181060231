@@ -115,6 +115,46 @@ assert(iMeantToDoThis.isNaN);
 //Lists
 var list = [1, 2, 3];
 //list has type list<int>.If you try to add non-integer objects to this list, the analyzer or runtime raises an error
+var constantList = const [1, 2, 3];
+//constantList[1] = 1; //This line will cause an error, because it's a compile-time constant
+//spread operator(...)
+var list = [1, 2, 3];
+var list2 = [0, ...list];
+assert(list2.length == 4);
+//if the right of the spread operator might be null, you can avoid exceptions by using a null-aware spread operator(...?)
+var list;
+var list2 = [0, ...?list];
+assert(list2.length = 1);
+//collection if
+var nav = [
+  'Home',
+  'Furniture',
+  'Plants',
+  if (promoActive) 'Outlet'//outlet will be created if the condition is true
+] 
+//collection for
+var listOfInts = [1, 2, 3];
+var listOfStrings = [
+  '#0',
+  for (var i in listOfInts) '#$i'
+];
+assert(listOfStrings[1] == '#1');
+
+
+//Sets: a set in dart is an unordered collection of unique items
+var halogens = {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
+//to create an empty set, use{} preceded by a type argument, or assign {} to a variable of type Set
+var names = <String>{};
+//Set<Strings> names = {}; //This works too
+//var names = {}; //this is a map, not a set
+
+//add(), addAll()
+var elements = <String>{};
+elements.add('fluorine');
+elements.addAll(halogens);
+assert(elements.length == 5);
+
+
 
 
 }
