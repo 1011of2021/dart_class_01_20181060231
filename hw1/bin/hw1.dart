@@ -162,7 +162,32 @@ assert(elements.length == 5);
 
 
 
-//11.Maps
+//11.Maps: a map is an object that associates keys and values. Both keys and values can be any type of object. Each key occurs only once, but you can use the same value multiple times.
+var gifts = {
+  //Key:       Value
+  'first': 'partridge',
+  'second': 'turtledoves',
+  'fifth': 'golden rings'
+};
+
+var nobleGases = {
+  2: 'helium',
+  10: 'neon',
+  18: 'argon',
+};
+
+//You can create the same objects using a Map constructor
+var gifts = Map<String, String>();
+gifts['first'] = 'partridge';
+gifts['second'] = 'turtledoves';
+gifts['fifth'] = 'golden rings';
+
+var nobleGases = Map<int, String>();
+nobleGases[2] = 'helium';
+nobleGases[10] = 'neon';
+nobleGases[18] = 'argon';
+//In Dart, the new keyword is optional, while you might expect to see new 'Map()' in Java
+
  
 
 }
