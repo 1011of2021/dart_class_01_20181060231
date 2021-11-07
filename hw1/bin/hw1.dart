@@ -1,3 +1,5 @@
+/// Dart开发语言概览
+
 // 1.一个简单的Dart程序
 // Define a function.
 void printInteger(int aNumber) {
@@ -842,3 +844,67 @@ import 'package:lib1/lib1.dart' show foo; // Import only foo
 import 'package:lib2/lib2.dart' hide foo; // Import all names EXCEPT foo
 */
 
+
+
+// 40.生成器, Generators: When you need to lazily produce a sequence of values, consider using a generator function. 
+/* Dart has built-in support for two kinds of generator functions:
+Synchronous generator: Returns an Iterable object
+Asynchronous generator: Returns a Stream object
+
+To implement a synchronous generator function, mark the function body as 'sunc*', and use 'yield' statements to deliver values:
+*/
+Iterable<int> naturalTo(int n) sync* {
+  int k = 0;
+  while (k<n) yield k++;
+}
+
+// To implement an asynchronous generator function, mark the function body as 'async*', and use yield statements to deliver values:
+Stream<int> asynchronousNaturalTo(int n) async* {
+  int k = 0;
+  while (k < n) yield k++;
+}
+
+
+
+// 41.元数据, Metadata
+/* Use metadata to give additional information about your code. A metadata annotation begins with the character @,
+followed by either a reference to a compile-time constant(such as deprecated) or a call to a constant constructor
+*/
+class Television {
+  /// Use [turnOn] to turn the power on instead
+  @Deprecated('Use turnOn instead')
+  void activate() {
+    turnOn();
+  }
+
+  /// Turns the TV's power on
+  void turnOn() {}
+}
+
+// You can define your own metadata annotations. Here's an example of defining a @Todo annotation that takes two arguments:
+library todo;
+
+class Todo {
+  final String who;
+  final String what;
+
+  const Todo(this.who, this.what);
+}
+
+// And here's an example of using that @Todo annotation:
+imort 'todo.dart';
+
+@Todo('seth', 'make this do something')
+void doSomething() {
+  print('do something');
+}
+/* Metadata can appear before a library, class, typedef, type parameter, constructor, factory, function, field, parameter, or
+variable declaration and before an import or export directive. You can retrieve metadata at runtime using reflection
+
+
+
+// 42.注释, Comments
+/* Documentation comments: Inside a documentation comment, the analyzer ignores all text unless it is enclosed in brackets(中括号).
+Using brackets, you can refer to classes, methods, fields, top-level variables, functions, and parameters. 
+The name in brackets are resolved in the lexical scope of of the documented program element.
+*/
