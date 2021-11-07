@@ -793,6 +793,52 @@ void main() {
 
 
 
-// 38.泛型, Generics:
+// 38.泛型, Generics
+/*
+The benefits of generics
+1) Properly specifying generic types results in better generated code
+If you intend for a list to contain only strings, you can declare it as List<String> (read that as "list of string"). 
+That way you, your fellow programmers, and your tools can detect that assigning a non-string to the list is probabbly a mistake:
 
+var names = <String>[];
+names,addAll(['Seth', 'Kathy', 'Lars']);
+names.add(42);  //Error
+
+2) You can use generics to reduce code duplication.
+Generics let you share a single interface and implementation between many types, while still taking advantage of static analysis:
+For example, say you create an interface for caching an object:
+
+abstract class ObjectCache {
+  Object getByKey(String key);
+  void setByKey(String key, Object value);
+}
+*/
+
+
+
+// 39.库和可见性, Libraries and visibility
+/*
+The 'import' and 'library' directives can help you create a modular and shareable code base. Libraries not only provide APIs, 
+but are a unit of privacy: identifiers that start with an underscore(_) are visible only inside the library. 
+Every Dart app is a library, even if it doesn't use a library directive
+
+Using libraries: The only required argument to import is a URI specifying the library. 
+For built-in libraries, the URI has the special 'dart:' scheme:
+import 'dart:html';
+For other libraries, you can use a file system path or the 'package:' scheme:
+import 'package:test/test.dart';
+
+Specifying a library prefix: If you import two libraries that have conflicting identifiers, then you can specify a prefix for one 
+or both libraries. For example, if library1 and library2 both have an Element class, then you might have code like this:
+import 'package:lib1/lib1.dart';
+import 'package:lib2/lib2.dart' as lib2;
+// Use Element from lib1
+Element element1 = Element();
+// Use Element from lib2
+lib2.Element element2 = lib2.Element();
+
+Importing only part of library: If you want to use only part of a library, you can selectively import the library. For example:
+import 'package:lib1/lib1.dart' show foo; // Import only foo 
+import 'package:lib2/lib2.dart' hide foo; // Import all names EXCEPT foo
+*/
 
