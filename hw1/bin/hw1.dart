@@ -208,15 +208,13 @@ assert(gifts.length == 2);
 
 
 // 12.Runes, graphemes and clusters
-"""
+/*
 In Dart, runes expose the Unicode code points of a string. 
 Unicode defines a unique numeric value for each letter, digit, and symbol used in all of the world's wirting systems.
 
 The usual way to express a Unicode code point is \uXXXX, where XXXX is a 4-digit hexadecimal value. For example, the heart character(♥) is \u2665. 
 To specify more or less than 4 hex digits, place the value in curly brackets. For example, the laughing emoji(😆) is \u{1f606}
-"""
 
-"""
 If you need to read or write individual Unicode characters, use the 'characters getter' defined on String by the characters package.
 The returned Characters object is the string as a sequence of grapheme clusters.
 Here's an example of using the characters API:
@@ -231,16 +229,16 @@ Hi 🇩🇰
 The end of the string: ???
 The last character: 🇩🇰
 
-"""
+*/
 
 
 
-// 13.Functions
-'''
+// 13.函数, Functions
+/*
 Dart is a true object-oriented language, so even functions are objects and have a type, 'Function'.
 This means that functions can be assigned to variables or passed as arguments to other functions.
 You can also call an instance(调用实例) of a Dart class as if it were a function.
-'''
+*/
 
 // Here's an example of implementing a function:
 bool isNoble(int atomicNumble) {
@@ -258,13 +256,12 @@ bool isNoble(int atomicNumble) => _nobleGases[atomicNumble] != null;
 
 
 
-// 14.Parameter
-'''A function can have any number of required positional parameters. These can be followed either by named parameters or by optional positional parameters.(but not both)
+// 14.参数, Parameter
+/*
+A function can have any number of required positional parameters. These can be followed either by named parameters or by optional positional parameters.(but not both)
 Some APIs, notably Flutter widget constructors, use only named parameters.
-'''
 
-// Named parameters: 
-'''
+Named parameters: 
 Named parameters are optional unless they're specifically marked as required. If a parameter is optional but can not be null, provide a default value. 
 When calling a function, you can specify named parameters using 'paramName: value'. 
 For example: enableFlags(bold: true, hidden: false);
@@ -272,7 +269,7 @@ For example: enableFlags(bold: true, hidden: false);
 When defining a function, use {param1, param2, ...} to specify named parameters: void enableFlags({bool: bold, bool: hidden})
 Although named parameters are a kind of optional parameter, you can annotate them with 'required' to indicate that the parameter is mandatory that users must provide a value for the parameter.
 For example: const Scrollbar({Key? key, required Widget child})
-'''
+*/
 
 // Optional Positional parameters: Wrapping a set of function parameters in [] marks them as optional positional parameters:
 String say(String from, String msg, [String? device]) {
@@ -288,7 +285,7 @@ assert(say('Bob', 'Howdy') == 'Bob says Howdy');
 assert(say('Bob', 'Howdy', 'smoke signal') == 'Bob says Howdy with a smoke signal');
 
 // Default parameter values:
-'''
+/*
 Your function can use = to define default values for both named and positional parameters. 
 The default values must be compile-time constants. If no default value is provided, the default value is null.
 Here's an example of setting default values for named parameters:
@@ -303,19 +300,19 @@ String say(String from, String msg, [String device = 'carrier pigeon']) {
 assert(say('Bob', 'Howdy') == 'Bob says Howdy with a carrier pigeon');
 
 You can also pass lists or maps as default values.
-'''
+*/
 
 
 
-// 15.The main() function
-'''
+// 15.main()函数, The main() function
+/*
 Every app must have a top-level main() function, which serves as the entrypoint to the app. 
 The main() function returns void and has an optional List<String> parameter for arguments 
-'''
+*/
 
 
 
-// 16.Funtions as first-class objects
+// 16.函数是一级对象, Funtions as first-class objects
 // You can pass a function as a parameter to another function. For example:
 void printElement(int element) {
   print(element);
@@ -328,8 +325,8 @@ assert(loudify('hello') == '!!! HELLO !!!');
 
 
 
-// 17.Anonymous functions:
-'''
+// 17.匿名函数, Anonymous functions:
+/*
 Most functions are named, you can also create a nameless function called an anonymous function, or sometimes a lambda or closure.
 You might assign an anonymous function to a variable so that, for example, you can add or remove it from a collection. 
 
@@ -337,7 +334,8 @@ You might assign an anonymous function to a variable so that, for example, you c
 ([[type] parameter[, …]]) { 
   function; 
 }; 
-'''
+*/
+
 // The following example difines an anonymous function with an untyped parameter, item. The function is invoked for each item in the list.
 const list = ['apples', 'bananas', 'oranges'];
 list.forEach((item) {
@@ -346,11 +344,12 @@ list.forEach((item) {
 
 
 
-// 18.Lexical scope(词法作用域)
-'''
+// 18.词法作用域, Lexical scope
+/*
 Dart is a lexically scoped language, which means that the scope of variables is determined statically, simply by the layout of the code. 
 You can "follow the curly braces outwards" to see if a variable is in scope. 
-'''
+*/
+
 // Here's an example of nested functions with variables at each scope level:
 bool topLevel = true;
 void main() {
@@ -373,7 +372,7 @@ void main() {
 
 
 
-// 19.Lexical closures(词法闭包)
+// 19.词法闭包, Lexical closures
 // A closure is a function object that has access to variables in its lexical scope, even when the function is used outside of its original scope.
 // In the following example, makeAdder() captures the variable addBy. Wherever the ruturned function goes, it remembers addBy
 Function makeAdder(int addBy) {
@@ -389,7 +388,7 @@ void main() {
 
 
 
-// 20.Testing functions for equality
+// 20.测试函数是否相等, Testing functions for equality
 // Here's an example of testing top-level functions, static method, and instance methods for equality. 
 void foo() {} // A top-level function
 
@@ -419,20 +418,20 @@ void main() {
   assert(v.baz != w.baz);
 }
 
-// 21.All functions returns a value. If no return value is specified, 
+
+
+// 21.返回值, All functions returns a value. If no return value is specified, 
 // the statement 'return null' is implicly appended to the function body.
 
 
 
 // 22.Operators
-'''
+/*
 bitwise AND: &
 bitwise XOR: ^
 bitwise OR: |
 if null(空判断): ??
-'''
 
-'''
 In the operator table, each operator has higher precedence than the operators in the rows that follow it. 
 For example, the multiplicative has higher precedence than the quality operator == , which has higher precedence than the logical AND operator &&.
 That precedence means that the following two lines of code execute the same way:
@@ -442,11 +441,12 @@ if ((n % i == 0) && (d % i == 0))...
 
 //Harder to read, but equivalent
 if (n % i == 0 && d % 1 == 0)...
-'''
+*/
 
 
-// 22.Type test operators
-'''
+
+// 22.类型判断运算符, Type test operators
+/*
 as: typecast
 is: true if the object has the specified type
 is!: true if the object doesn't have the specified type
@@ -454,20 +454,21 @@ The result of 'obj is T' is true if obj implements the interface specified by T.
 Use the as operator to cast an object to a particular type if and only if you are sure that the object is of that type.
 Example: (employee as person).firstName = 'Bob';
 If you aren't sure that the object is of type T, then use 'is T' to check the type before using the object.
-
-'''
-
+*/
 
 
-// 23.operators
-'''
+
+// 23.运算符, operators
+/*
 ~expression: 按位取反
 <<: 左移
 >>>: 无符号右移
-'''
+*/
 
-// 24.conditional expressions:
-'''
+
+
+// 24.条件表达式, conditional expressions:
+/*
 1.condition ? expr1 : expr2
 2.expr1 ?? expr2     : If the expr1 is not null, returns its value, otherwise, evaluates and returns the values of expr2 
 
@@ -476,11 +477,12 @@ var visibility = isPublic ? 'public' : 'private';
 
 If the boolean expression tests for null, consider using ??
 String plaryerName(String? Name) => name ?? 'Guest';
+*/
 
-'''
 
-// 25.cascade notation
-'''
+
+// 25.级联运算符, cascade notation
+/*
 Cascades allow you to make a sequence of operations on the same object. 
 var paint = Paint()
   ..color = Colors.black
@@ -495,7 +497,302 @@ paint.strokeWidth = 5.0;
 
 If the object that the cascade operates on can be null, then use a null-shorting cascade (?..) for the first operation. 
 Starting with ?.. guarantees that none of the cascade operations are attempted on that null object.
+*/
 
-'''
+// '?.' 是条件访问成员，但是左边的对象不能为空
 
-// '?.' 是条件访问成员，
+
+
+// 26.流程控制语句, Control flow statements
+/*
+1.if-else: conditions must be boolean values, nothing else, for example:
+if (isRaining()) {
+  you.bringRainCoat();
+}
+2.For:
+If the object that you are iterating over is an iterable(such as List or Set) 
+and if you don't need to know the current iteration conter, you can use the for-in form of iteration:
+for (final candidate in candidates) {
+  candidate.interview();
+}
+Iterable classes also have a forEach() method as another option:
+var collection = [1, 2, 3];
+collection.forEach(print);
+*/
+
+
+
+// 27.断言 Assert
+/*
+During development, use an assert statement 'assert(condition, optionalMessage);' 
+to disrupt normal execution if a boolean condition is false. For example: 
+// Make sure the variable has a non-null value
+assert(text != null);
+
+// Make sure the value is less than 100
+assert(number < 100);
+
+// Make sure this is an https URL
+assert(urlString.startsWith('https'));
+
+//To attach a message to an assertion, add a string as the second argument to assert
+assert(urlString.startsWith('https), 'URL ($urlString) should start with "https".');
+
+The first argument to assert can be any expression that resolves to a boolean valule. 
+If the expression's value is true, the assertion succeeds and execution continues. 
+If it's false, the assertion fails and an exception is thrown.
+*/
+
+
+
+// 28.类, class
+//Instance variables
+class Point {
+  double? x;// Declare instance variable x, initially null
+}
+
+//构造函数, constructors
+//Declare a constructor by creating a function with the same name as its class
+class Point {
+  double x = 0;
+  double y = 0;
+  Point(double x, double y) {
+    this.x = x;
+    this.y = y;
+    // Use this only when there is a name conflict. Otherwise, Dart style omits the 'this'.
+  }
+}
+/*
+Default constructors: If you don't declare a constructor, a default constructor is provided for you. 
+The default constructor has no arguments and invokes the no-argument constructor in the superclass. 
+Subclasses don't inherit constructors from their superclass.
+*/
+
+
+
+// 29.方法, Method: method are functios that provid behavior for an object
+//抽象方法, Abstract methods: Defining an interface but leaving its implementation up to other classes. Abstract methods can only exist in abstract classes. 
+abstract class Doer {
+  // Define instance variables and methods
+  void doSomething(); // Define an abstract method
+}
+
+class EffectiveDoer extends Doer {
+  void doSomething() {
+    // Provide an implementation, so the method is not abstract here
+  }
+}
+
+
+
+// 30.抽象类, Abstract class
+/*
+Use the abstract modifier to define an abstract class--a class that can't be instantiated.  
+Abstract classes are useful for defining interfaces, often with some implementation. 
+*/
+
+// Abstract classes often have abstract methods. Here's an example of declaring an abstract class that has an abstract method:
+abstract class AbstractContainer {
+  // Define constructors, fields, methods
+  
+  void updateChildren(); // Abstract method
+}
+
+
+
+// 31.隐式接口, Implicit interfaces
+/*
+Every class implicitly defines an interface containing all the instance members of the class and of any interfaces it inplements. 
+If you want to create a class A that supports class B's API without inheriting B's implementation, class A should implement the B interface. 
+*/
+// A class implements one or more interfaces by declaring them in an implements clause and then providing the APIs required by the interfaces. 
+
+// A person. The implicit interface contains greet()...
+class Person {
+  // In the interface, but visible only in this library
+  final String _name;
+
+  // Not in the interface, since this is a constructor
+  Person(this._name);
+
+  // In the interface
+  String greet(String who) => 'Hello, $who. I am $_name.';
+}
+
+// An implementation of the Person interface
+class Impostor implements Person {
+  String get _name => '';
+
+  String greet(String who) => 'Hi $who. Do you know who I am?';
+}
+
+String greetBob(Person person) => person.greet('Bob');
+
+void main() {
+    print(greetBob(Person('Kathy')));
+    print(greetBob(Impostor()));
+}
+
+
+
+// 32.扩展一个类, Extending a class: Use extends to create a subclass, and super to refer to the superclass:
+class Television {
+  void turnOn() {
+    _illminateDisplay();
+    _activateIrSensor();
+  }
+}
+
+class SmartTelevision extends Television {
+  void turnOn {
+    super.turnOn();
+    _bootNetworkInterface();
+    _initializeMemory();
+    _upgradeApps();
+  }
+}
+
+
+
+// 33.重写类成员, Overrinding members
+/*
+Subclasses can override instance methods(including operators), getters, and setters. 
+You can use the @override annotation to indicate that you are intentionally overriding a member:
+*/
+class Television {
+  set constrast(int value) {}
+}
+
+class SmartTelevision extends Television {
+  @override
+  set contrast(num value) {}
+}
+/*
+An overriding method declaration must match the methods that it overrides in several ways:
+1) The return type must be the same type as (or a subtype of) the overridden methods' return type
+2) Argument type must be the same
+3) The number of positional parameters must be the same
+4) A generic method can not override a non-generic one, and a non-generic method can not override a generic one
+
+*/
+
+
+
+// 34.noSuchMethod
+// To detect or react whenever code attempts to use a non-existent method or instance variable, you can override noSuchMethod():
+class A {
+  // Unless you override noSuchMethod, using a non-existent member results in a NoSuchMethodError
+  @override
+  void noSuchMethod(Invocation invocation) {
+    print('You tried to use a non-existent member: ' '${invocation.memberName}');
+  }
+}
+
+
+
+// 35.枚举, Enumerated types: often called enumerations or enums, are a special kind of class used to represent a fixed number of constant values 
+// Declare an enumerated type using the enum keyword:
+enum Color { red, green, blue }
+
+// You can use trailling commas when declaring an enumerated type.
+// Each value in an enum has an index getter, which returns the zero-based position of the value in the enum declaration. For example, the first value has index 0, and the second value has index 1. 
+assert(Color.red.index == 0);
+
+/*
+Enumerated types have the following limits:
+You can't subclass, mix in, or implement an enum.
+You can't explicitly instantiate an enum
+*/
+
+
+
+// 36.使用Mixin为类添加功能, Adding features to a class: mixins. Mixins are a way of reusing a class's code in multiple calss hierachies.
+// To use a mixin, use the with keyword followed by one or more mixin names. The following example shows two classes that use mixins:
+class Musician extends Performer with Musical {
+ 
+}
+
+class Maestro extends Person
+    with Musical, Aggressive, Demented {
+  Maestro(String maestroName) {
+    name = maestroName;
+    canConduct = true;
+  }
+    }
+
+// To implement a mixin, create a class that extends Object and declares no constructors. 
+// Unless you want your mixin to be usable as a regular class, use the mixin keyword instead of class
+mixin Musical {
+  bool canPlayPiano = false;
+  bool canCompose = false;
+  bool canConduct = false;
+
+  void entertainMe() {
+    if (canPlayPiano) {
+      print('Playing piano');
+    } else if (canConduct) {
+      print('Waving hands');
+    } else {
+      print('Humming to self');
+    }
+  }
+}
+
+/* Sometimes you might want to restrict the types that can use a mixin. For example, the mixin might depend on being able to 
+invoke a method that the mixin doesn't define. As the following example shows, you can restrict a mixin's use by using the 'on'
+keyword to specify the required superclass:
+*/
+class Musician {
+
+}
+mixin MusicalPerformer on Musician {
+
+}
+class SingerDancer extends Musician with MusicalPerformer {
+
+}
+// In the preceding code, only classes that extend or implement the Musician class can use the mixin MusicalPerformer
+// SingerDancer can mix in MusicalPerformer because SingerDancer extends Musician.
+
+
+
+// 37.类变量和方法, Class variables and methods: Use the static keyword to implement class-wide variables and methods
+// Static variables (class variables) are useful for class-wide state and constants:
+class Queue {
+  static const initialCapacity = 16;
+  // static variables aren't initialized untill they're used
+}
+
+void main() {
+  assert(Queue.initialCapacity == 16);
+}
+
+/* Static methods(class methods) don't operate on an instance, and thus don' have access to 'this'. 
+They do, however, have access to static variables. As the following example shows, you invoke static methods directly on a class.
+*/
+import 'dart:math';
+
+class Point {
+  doubnle x, y;
+  Point(this.x, this.y);
+
+  static double distanceBetween(Point a, Point b) {
+    var dx = a.x - b.x;
+    var dy = a.y - b.y;
+    return sqrt(dx * dx + dy * dy);
+  }
+}
+
+void main() {
+  var a = Point(2, 2);
+  var b = Point(4, 4);
+  var distance = Point.distanceBetween(a, b);
+  assert(2.8 < distance && distance < 2.9);
+  print(distance);
+}
+
+
+
+// 38.泛型, Generics:
+
+
