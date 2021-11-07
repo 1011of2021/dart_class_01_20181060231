@@ -445,4 +445,57 @@ if (n % i == 0 && d % 1 == 0)...
 '''
 
 
-// 22.Arithmetic operators
+// 22.Type test operators
+'''
+as: typecast
+is: true if the object has the specified type
+is!: true if the object doesn't have the specified type
+The result of 'obj is T' is true if obj implements the interface specified by T.
+Use the as operator to cast an object to a particular type if and only if you are sure that the object is of that type.
+Example: (employee as person).firstName = 'Bob';
+If you aren't sure that the object is of type T, then use 'is T' to check the type before using the object.
+
+'''
+
+
+
+// 23.operators
+'''
+~expression: 按位取反
+<<: 左移
+>>>: 无符号右移
+'''
+
+// 24.conditional expressions:
+'''
+1.condition ? expr1 : expr2
+2.expr1 ?? expr2     : If the expr1 is not null, returns its value, otherwise, evaluates and returns the values of expr2 
+
+When you need to assign a value based on a boolean expression, consider using ? and :
+var visibility = isPublic ? 'public' : 'private';
+
+If the boolean expression tests for null, consider using ??
+String plaryerName(String? Name) => name ?? 'Guest';
+
+'''
+
+// 25.cascade notation
+'''
+Cascades allow you to make a sequence of operations on the same object. 
+var paint = Paint()
+  ..color = Colors.black
+  ..strokeCap = StrokeCap.round
+  ..strokeWidth = 5.0;
+
+The code above is equivalent to:
+var paint = Paint();
+paint.color = Colors.black;
+paint.strokeCap = StrokeCap.round;
+paint.strokeWidth = 5.0;
+
+If the object that the cascade operates on can be null, then use a null-shorting cascade (?..) for the first operation. 
+Starting with ?.. guarantees that none of the cascade operations are attempted on that null object.
+
+'''
+
+// '?.' 是条件访问成员，
