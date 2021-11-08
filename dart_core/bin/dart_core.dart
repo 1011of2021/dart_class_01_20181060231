@@ -1,11 +1,84 @@
 /// dart: core
 
+class Line implements Comparable<Line> {
+  final int length;
+  const Line(this.length);
+
+  @override
+  int compareTo(Line other) => length - other.length;
+}
+
+
+class Person {
+  final String firstName, lastName;
+
+  Person(this.firstName, this.lastName);
+
+  // Override hashCode using strategy from Effective Java,
+  // Chapter 11.
+  @override
+  int get hashCode {
+    int result = 17;
+    result = 37 * result + firstName.hashCode;
+    result = 37 * result + lastName.hashCode;
+    return result;
+  }
+
+  // You should generally implement operator == if you
+  // override hashCode.
+  @override
+  bool operator ==(dynamic other) {
+    return other is Person &&
+        other.firstName == firstName &&
+        other.lastName == lastName;
+  }
+}
+
+
+
+class Process {
+  // Represents a process...
+}
+
+/*
+class ProcessIterator implements Iterator<Process> {
+  @override
+  Process get current => ...
+  @override
+  bool moveNext() => ...
+}
+*/
+
+// A mythical class that lets you iterate through all
+// processes. Extends a subclass of [Iterable].
+/*
+class Processes extends IterableBase<Process> {
+  @override
+  final Iterator<Process> iterator = ProcessIterator();
+}
+*/
+
+
+class FooException implements Exception {
+  final String? msg;
+
+  const FooException([this.msg]);
+
+  @override
+  String toString() => msg ?? 'FooException';
+}
+
+
+
+
+void main(){
 // 1.控制台打印, Printing to the console
 // The top-level print() method takes a single argument(any Object) and displays that object's string value
 // (as returned by toString()) in the console
+/*
 print(anObject);
 print('I drink $tea.');
-
+*/
 
 
 // 2.数字, Numbers
@@ -160,7 +233,7 @@ assert(fruits.length == 5);
 // Remove a single item
 var appleIndex = fruits.indexOf('apples');
 fruits.removeAt(appleIndex);
-assert(fruit.length == 4);
+assert(fruits.length == 4);
 
 // Remove all elements from a list
 fruits.clear();
@@ -171,20 +244,20 @@ var vegetables = List.filled(99, 'broccoli');
 assert(vegetables.every((v) => v == 'broccoli'));
 
 // Use indexOf() to find the index of an object in a list
-var fruits = ['apples', 'oranges'];
+var fruits2 = ['apples', 'oranges'];
 
 // Access a list item by index
-assert(fruits[0] == 'apples');
+assert(fruits2[0] == 'apples');
 
 // Find an item in a list
-assert(fruits.indexOf('apples') == 0);
+assert(fruits2.indexOf('apples') == 0);
 
 // Sort a list using the sort() method. This sorting function must return <0 for smaller, 0 for the same, and >0 for bigger
-var fruits = ['bananas', 'apples', 'oranges'];
+var fruits3 = ['bananas', 'apples', 'oranges'];
 
 // Sort a list(排序)
-fruits.sort((a, b) => a.compareTo(b));
-assert(fruits[0] == 'apples')
+fruits3.sort((a, b) => a.compareTo(b));
+assert(fruits3[0] == 'apples');
 
 // 2) Sets
 // A set in Dart is an unordered collection of unique items so you can't get a set's items by index(position).
@@ -205,18 +278,18 @@ var atomicNumbers = Set.from([79, 22, 54]);
 
 // Use contains() and containsAll() to check whether one or more objects are in a set
 
-var ingredients = Set<String>();
-ingredients.addAll(['gold', 'titanium', 'xenon']);
+var ingredients2 = Set<String>();
+ingredients2.addAll(['gold', 'titanium', 'xenon']);
 
 // Check whether an item is in the set
-assert(ingredients.contains('titanium'));
+assert(ingredients2.contains('titanium'));
 
 // Check whether all the items are in the set
-assert(ingredients.containsAll(['titanium', 'xenon']));
+assert(ingredients2.containsAll(['titanium', 'xenon']));
 
 // An intersection is a set whose items are in two other sets
-var ingredients = Set<String>();
-ingredients.addAll(['gold', 'titanium', 'xenon']);
+var ingredients3 = Set<String>();
+ingredients3.addAll(['gold', 'titanium', 'xenon']);
 
 // Create the intersection of two sets
 var nobleGases = Set.from(['xenon', 'argon']);
@@ -241,23 +314,23 @@ var hawaiianBeaches = {
 var searchTerms = Map();
 
 // Maps are parameterized types; you can specify what types the key and value should be.
-var nobleGases = Map<int, String>();
+var nobleGases2 = Map<int, String>();
 
 // You add, get, and set map items using the bracket syntax. Use remove() to remove a key and its value from a map.
-var nobleGases = {54: 'xenon'};
+var nobleGases3 = {54: 'xenon'};
 
 // Retrieve a value with a key.
-assert(nobleGases[54] == 'xenon');
+assert(nobleGases3[54] == 'xenon');
 
 // Check whether a map contains a key.
-assert(nobleGases.containsKey(54));
+assert(nobleGases3.containsKey(54));
 
 // Remove a key and its value.
 nobleGases.remove(54);
-assert(!nobleGases.containsKey(54));
+assert(!nobleGases3.containsKey(54));
 
 // You can retrieve all the values or all the keys from a map:
-var hawaiianBeaches = {
+var hawaiianBeaches2 = {
   'Oahu': ['Waikiki', 'Kailua', 'Waimanalo'],
   'Big Island': ['Wailea Bay', 'Pololu Beach'],
   'Kauai': ['Hanalei', 'Poipu']
@@ -282,8 +355,8 @@ assert(coffees.isEmpty);
 assert(teas.isNotEmpty);
 
 // To apply a function to each item in a list, set, or map, you can use forEach():
-var teas = ['green', 'black', 'chamomile', 'earl grey'];
-teas.forEach((tea) => print('I drink $tea'));
+var teas2 = ['green', 'black', 'chamomile', 'earl grey'];
+teas2.forEach((tea) => print('I drink $tea'));
 
 // When you invoke forEach() on a map, your function must take two arguments (the key and value):
 hawaiianBeaches.forEach((k, v) {
@@ -297,7 +370,7 @@ var loudTeas =
 
 // Use Iterable’s where() method to get all the items that match a condition. 
 // Use Iterable’s any() and every() methods to check whether some or all items match a condition.
-var teas = ['green', 'black', 'chamomile', 'earl grey'];
+var teas3 = ['green', 'black', 'chamomile', 'earl grey'];
 
 // Chamomile is not caffeinated.
 bool isDecaffeinated(String teaName) =>
@@ -333,34 +406,36 @@ assert(uri == decoded);
 
 // To encode and decode all of a string’s characters that have special meaning in a URI, 
 // including (but not limited to) /, &, and :, use the encodeComponent() and decodeComponent() methods.
-var uri = 'https://example.org/api?foo=some message';
+var uri2 = 'https://example.org/api?foo=some message';
 
-var encoded = Uri.encodeComponent(uri);
-assert(encoded ==
+var encoded2 = Uri.encodeComponent(uri2);
+assert(encoded2 ==
     'https%3A%2F%2Fexample.org%2Fapi%3Ffoo%3Dsome%20message');// every special character is encoded
 
-var decoded = Uri.decodeComponent(encoded);
-assert(uri == decoded);
+var decoded2 = Uri.decodeComponent(encoded2);
+assert(uri2 == decoded2);
 
 // If you have a Uri object or a URI string, you can get its parts using Uri fields such as path. 
 // To create a Uri from a string, use the parse() static method:
-var uri =
+var uri3 =
     Uri.parse('https://example.org:8080/foo/bar#frag');
 
-assert(uri.scheme == 'https');
-assert(uri.host == 'example.org');
-assert(uri.path == '/foo/bar');
-assert(uri.fragment == 'frag');
-assert(uri.origin == 'https://example.org:8080');
-
 // You can build up a URI from individual parts using the Uri() constructor:
-var uri = Uri(
+var uri4 = Uri(
     scheme: 'https',
     host: 'example.org',
     path: '/foo/bar',
     fragment: 'frag');
 assert(
     uri.toString() == 'https://example.org/foo/bar#frag');
+
+assert(uri4.scheme == 'https');
+assert(uri4.host == 'example.org');
+assert(uri4.path == '/foo/bar');
+assert(uri4.fragment == 'frag');
+assert(uri4.origin == 'https://example.org:8080');
+
+
 
 
 
@@ -392,6 +467,7 @@ y2k = DateTime.parse('2000-01-01T00:00:00Z');
 // Comparing objects
 // Implement the Comparable interface to indicate that an object can be compared to another object, usually for sorting. 
 // The compareTo() method returns < 0 for smaller, 0 for the same, and > 0 for bigger.
+/*
 class Line implements Comparable<Line> {
   final int length;
   const Line(this.length);
@@ -399,12 +475,13 @@ class Line implements Comparable<Line> {
   @override
   int compareTo(Line other) => length - other.length;
 }
+*/
 
-void main() {
+
   var short = const Line(1);
   var long = const Line(100);
   assert(short.compareTo(long) < 0);
-}
+
 
 // Implementing map keys
 /*
@@ -414,6 +491,7 @@ If you do, you might also want to override the == operator. Objects that are equ
 A hash code doesn’t have to be unique, but it should be well distributed.
  */
 
+/*
 class Person {
   final String firstName, lastName;
 
@@ -437,16 +515,16 @@ class Person {
         other.firstName == firstName &&
         other.lastName == lastName;
   }
-}
+}*/
 
-void main() {
+
   var p1 = Person('Bob', 'Smith');
   var p2 = Person('Bob', 'Smith');
   var p3 = 'not a person';
   assert(p1.hashCode == p2.hashCode);
   assert(p1 == p2);
   assert(p1 != p3);
-}
+
 
 // Iteration
 // The Iterable and Iterator classes support sequential access to a collection of values. 
@@ -454,6 +532,7 @@ void main() {
 
 // If you create a class that can provide Iterators for use in for-in loops, extend (if possible) or implement Iterable. 
 // Implement Iterator to define the actual iteration ability.
+/*
 class Process {
   // Represents a process...
 }
@@ -471,13 +550,15 @@ class Processes extends IterableBase<Process> {
   @override
   final Iterator<Process> iterator = ProcessIterator();
 }
+*/
 
-void main() {
   // Iterable objects can be used with for-in.
+  /*
   for (final process in Processes()) {
     // Do something with the process.
   }
-}
+  */
+
 
 // Exceptions
 /* The Dart core library defines many common exceptions and errors. 
@@ -490,6 +571,7 @@ A couple of the most common errors are:
 
 // Throwing an application-specific exception is a common way to indicate that an error has occurred. 
 // You can define a custom exception by implementing the Exception interface:
+/*
 class FooException implements Exception {
   final String? msg;
 
@@ -497,4 +579,6 @@ class FooException implements Exception {
 
   @override
   String toString() => msg ?? 'FooException';
+}
+*/
 }
