@@ -3,12 +3,186 @@
 
 // 1.一个简单的Dart程序
 // Define a function.
+
+library todo;
+
+
+import 'dart:math';
+
+
 void printInteger(int aNumber) {
   print('The number is $aNumber.'); // Print to console.
   // $: Similar to pointer, address
 }
 
-// This is where the app starts executing.
+class A {
+  static void bar() {} // A static method
+  void baz() {} // An instance method
+}
+
+
+class Point0 {
+  double? x;// Declare instance variable x, initially null
+}
+
+class Point {
+  double x = 0;
+  double y = 0;
+  Point(double x, double y) {
+    this.x = x;
+    this.y = y;
+    // Use this only when there is a name conflict. Otherwise, Dart style omits the 'this'.
+  }
+}
+
+abstract class Doer {
+  // Define instance variables and methods
+  void doSomething(); // Define an abstract method
+}
+
+class EffectiveDoer extends Doer {
+  void doSomething() {
+    // Provide an implementation, so the method is not abstract here
+  }
+}
+
+abstract class AbstractContainer {
+  // Define constructors, fields, methods
+  
+  void updateChildren(); // Abstract method
+}
+
+
+class Person {
+  // In the interface, but visible only in this library
+  final String _name;
+
+  // Not in the interface, since this is a constructor
+  Person(this._name);
+
+  // In the interface
+  String greet(String who) => 'Hello, $who. I am $_name.';
+}
+
+// An implementation of the Person interface
+class Impostor implements Person {
+  String get _name => '';
+
+  String greet(String who) => 'Hi $who. Do you know who I am?';
+}
+
+/*
+class Television {
+  void turnOn() {
+    _illuminateDisplay();
+    _activateIrSensor();
+  }
+}
+
+class SmartTelevision extends Television {
+  void turnOn() {
+    super.turnOn();
+    _bootNetworkInterface();
+    _initializeMemory();
+    _upgradeApps();
+  }
+}
+*/
+
+class Television2 {
+  set constrast(int value) {}
+}
+
+/*
+class SmartTelevision2 extends Television {
+  @override
+  set contrast(num value) {}
+}
+*/
+
+class A2 {
+  // Unless you override noSuchMethod, using a non-existent member results in a NoSuchMethodError
+  @override
+  void noSuchMethod(Invocation invocation) {
+    print('You tried to use a non-existent member: ' '${invocation.memberName}');
+  }
+}
+
+enum Color { red, green, blue }
+
+/*
+class Musician extends Performer with Musical {
+ 
+}
+
+class Maestro extends Person
+    with Musical, Aggressive, Demented {
+  Maestro(String maestroName) {
+    name = maestroName;
+    canConduct = true;
+  }
+    }
+
+
+class Musician2 {
+
+}
+mixin MusicalPerformer on Musician {
+
+}
+class SingerDancer extends Musician with MusicalPerformer {
+
+}
+*/
+
+
+class Queue {
+  static const initialCapacity = 16;
+  // static variables aren't initialized untill they're used
+}
+
+
+
+
+class Pointt {
+  double x, y;
+  Pointt(this.x, this.y);
+
+  static double distanceBetween(Pointt a, Pointt b) {
+    var dx = a.x - b.x;
+    var dy = a.y - b.y;
+    return sqrt(dx * dx + dy * dy);
+  }
+}
+
+
+class Televisionn {
+  /// Use [turnOn] to turn the power on instead
+  @Deprecated('Use turnOn instead')
+  void activate() {
+    turnOn();
+  }
+
+  /// Turns the TV's power on
+  void turnOn() {}
+}
+
+
+
+class Todo {
+  final String who;
+  final String what;
+
+  const Todo(this.who, this.what);
+}
+
+
+
+@Todo('seth', 'make this do something')
+void doSomething() {
+  print('do something');
+}
+
 
 void main() {
   var number = 42; // Declare and initialize a variable.
@@ -58,7 +232,7 @@ assert(lineCount == null);
   const double atm = 1.01325 * bar;
 
 // The const keyword can also be used to create constant values. 
-  var foo = const[];
+  var foo2 = const[];
   const baz = [];
 // foo = [1,2,3];//(√) You can change the value of a non-final, non-const variable, even if it used to have a const value
 // baz = [42];(x) Cuz const variables can't be assigned a value.  
@@ -91,8 +265,9 @@ var s4 = "It's even easier to use the other delimiter."; //while in the sentence
 
 // expressions: use ${expression} to put the value of an expression inside a string, if the expression is an identifier, you can skip the '{}'
 var s = 'string interpolation';
-assert('Dart has $s, which is very handy.'); //this is equivelant to 'Dart has string interpolation, which is very handy.')
-assert('That deserves all caps. ${s.toUpperCase()} is very handy!'); //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
+
+assert('Dart has $s, which is very handy.' =='Dart has string interpolation, ' 'which is very handy.');
+assert('That deserves all caps. ''${s.toUpperCase()} is very handy!' =='That deserves all caps. ''STRING INTERPOLATION is very handy!');
 
 // use '+' to connect multiple strings
 var ss = 'The + operator ' + 'works, as well.';
@@ -138,16 +313,16 @@ var listnn = [1, 2, 3];
 var list2 = [0, ...list];
 assert(list2.length == 4);
 // if the right of the spread operator might be null, you can avoid exceptions by using a null-aware spread operator(...?)
-var listnn;
+
 var listnn2 = [0, ...?list];
-assert(list2.length = 1);
+assert(listnn2.length == 1);
 // collection if
 var nav = [
   'Home',
   'Furniture',
   'Plants',
-  if (promoActive) 'Outlet'//outlet will be created if the condition is true
-] 
+  if (true) 'Outlet'//outlet will be created if the condition is true
+]; 
 // collection for
 var listOfInts = [1, 2, 3];
 var listOfStrings = [
@@ -188,33 +363,33 @@ var nobleGases = {
 };
 
 // You can create the same objects using a Map constructor
-var gifts = Map<String, String>();
+var giftsn = Map<String, String>();
 gifts['first'] = 'partridge';
 gifts['second'] = 'turtledoves';
 gifts['fifth'] = 'golden rings';
 
-var nobleGases = Map<int, String>();
+var nobleGases2 = Map<int, String>();
 nobleGases[2] = 'helium';
 nobleGases[10] = 'neon';
 nobleGases[18] = 'argon';
 // In Dart, the new keyword is optional, while you might expect to see new 'Map()' in Java
 
 // Add a new key-value pair to an existing map
-var gifts = {'first': 'partridge'};
-gifts['fourth'] = 'calling birds';
+var gifts2 = {'first': 'partridge'};
+gifts2['fourth'] = 'calling birds';
 
 // Retrieve a value from a map
-var gifts = {'first': 'partirdge'};
-assert(gifts['first'] = 'partridge');
+var gifts3 = {'first': 'partirdge'};
+assert(gifts3['first'] == 'partridge');
 
 // If you look for a key that isn't in a map, you get a null in return
-var gifts = {'first': 'partridge'};
-assert(gifts['fifth'] == null);
+var gifts4 = {'first': 'partridge'};
+assert(gifts4['fifth'] == null);
 
 // Use .length to get the number of key-value pairs in the map
-var gifts = {'first': 'partridge'};
-gifts['fourth'] = 'calling birds';
-assert(gifts.length == 2);
+var gifts5 = {'first': 'partridge'};
+gifts5['fourth'] = 'calling birds';
+assert(gifts5.length == 2);
 
 
 
@@ -251,17 +426,25 @@ This means that functions can be assigned to variables or passed as arguments to
 You can also call an instance(调用实例) of a Dart class as if it were a function.
 */
 
+
+/*
+var nobleGases3 = {
+  2: 'helium',
+  10: 'neon',
+  18: 'argon',
+};
 // Here's an example of implementing a function:
 bool isNoble(int atomicNumble) {
   return _nobleGases[atomicNumble] !=null;
 }
 // Although effective Dart recommends type annotations for public APIs, the function still works if you omit the types:
-isNoble(atomicNumble) {
+isNoble2(atomicNumble) {
   return _nobleGases[atomicNumble] != null;
 }
+*/
 
 // For functions that contain just one expression, you can use a shorthand syntax:
-bool isNoble(int atomicNumble) => _nobleGases[atomicNumble] != null;
+// bool isNoble2(int atomicNumble) => _nobleGases[atomicNumble] != null;
 // The '=> expr' syntax is a shorthand for { return expr; }. The notation is sometimes referred to as arrow syntax.
 // Only an expression (not a statement) can appear between the arrow (=>) and the semicolon(;). You can't put an if statement there but you can put a conditional expression.
 
@@ -328,8 +511,8 @@ The main() function returns void and has an optional List<String> parameter for 
 void printElement(int element) {
   print(element);
 }
-var list = [1, 2, 3];
-list.forEach(printElement);
+var listt = [1, 2, 3];
+listt.forEach(printElement);
 // You can also assign a function to a variable, such as: 
 var loudify = (msg) => '!!! ${msg.toUpperCase()} !!!';
 assert(loudify('hello') == '!!! HELLO !!!');
@@ -348,7 +531,7 @@ You might assign an anonymous function to a variable so that, for example, you c
 */
 
 // The following example difines an anonymous function with an untyped parameter, item. The function is invoked for each item in the list.
-const list = ['apples', 'bananas', 'oranges'];
+const listnnn = ['apples', 'bananas', 'oranges'];
 list.forEach((item) {
   print('${list.indexOf(item)}: $item');
 });
@@ -406,10 +589,7 @@ void main() {
 // Here's an example of testing top-level functions, static method, and instance methods for equality. 
 void foo() {} // A top-level function
 
-class A {
-  static void bar() {} // A static method
-  void baz() {} // An instance method
-}
+
 
 /*
 void main() {
@@ -560,7 +740,7 @@ If it's false, the assertion fails and an exception is thrown.
 */
 
 
-
+/*
 // 28.类, class
 //Instance variables
 class Point {
@@ -583,11 +763,12 @@ Default constructors: If you don't declare a constructor, a default constructor 
 The default constructor has no arguments and invokes the no-argument constructor in the superclass. 
 Subclasses don't inherit constructors from their superclass.
 */
-
+*/
 
 
 // 29.方法, Method: method are functios that provid behavior for an object
 //抽象方法, Abstract methods: Defining an interface but leaving its implementation up to other classes. Abstract methods can only exist in abstract classes. 
+/*
 abstract class Doer {
   // Define instance variables and methods
   void doSomething(); // Define an abstract method
@@ -598,7 +779,7 @@ class EffectiveDoer extends Doer {
     // Provide an implementation, so the method is not abstract here
   }
 }
-
+*/
 
 
 // 30.抽象类, Abstract class
@@ -608,11 +789,13 @@ Abstract classes are useful for defining interfaces, often with some implementat
 */
 
 // Abstract classes often have abstract methods. Here's an example of declaring an abstract class that has an abstract method:
+/*
 abstract class AbstractContainer {
   // Define constructors, fields, methods
   
   void updateChildren(); // Abstract method
 }
+*/
 
 
 
@@ -624,6 +807,7 @@ If you want to create a class A that supports class B's API without inheriting B
 // A class implements one or more interfaces by declaring them in an implements clause and then providing the APIs required by the interfaces. 
 
 // A person. The implicit interface contains greet()...
+/*
 class Person {
   // In the interface, but visible only in this library
   final String _name;
@@ -641,6 +825,7 @@ class Impostor implements Person {
 
   String greet(String who) => 'Hi $who. Do you know who I am?';
 }
+*/
 
 String greetBob(Person person) => person.greet('Bob');
 
@@ -654,6 +839,7 @@ void main() {
 
 
 // 32.扩展一个类, Extending a class: Use extends to create a subclass, and super to refer to the superclass:
+/*
 class Television {
   void turnOn() {
     _illminateDisplay();
@@ -669,14 +855,14 @@ class SmartTelevision extends Television {
     _upgradeApps();
   }
 }
-
+*/
 
 
 // 33.重写类成员, Overrinding members
 /*
 Subclasses can override instance methods(including operators), getters, and setters. 
 You can use the @override annotation to indicate that you are intentionally overriding a member:
-*/
+
 class Television {
   set constrast(int value) {}
 }
@@ -685,7 +871,7 @@ class SmartTelevision extends Television {
   @override
   set contrast(num value) {}
 }
-/*
+
 An overriding method declaration must match the methods that it overrides in several ways:
 1) The return type must be the same type as (or a subtype of) the overridden methods' return type
 2) Argument type must be the same
@@ -698,6 +884,7 @@ An overriding method declaration must match the methods that it overrides in sev
 
 // 34.noSuchMethod
 // To detect or react whenever code attempts to use a non-existent method or instance variable, you can override noSuchMethod():
+/*
 class A {
   // Unless you override noSuchMethod, using a non-existent member results in a NoSuchMethodError
   @override
@@ -705,12 +892,12 @@ class A {
     print('You tried to use a non-existent member: ' '${invocation.memberName}');
   }
 }
-
+*/
 
 
 // 35.枚举, Enumerated types: often called enumerations or enums, are a special kind of class used to represent a fixed number of constant values 
 // Declare an enumerated type using the enum keyword:
-enum Color { red, green, blue }
+// enum Color { red, green, blue }
 
 // You can use trailling commas when declaring an enumerated type.
 // Each value in an enum has an index getter, which returns the zero-based position of the value in the enum declaration. For example, the first value has index 0, and the second value has index 1. 
@@ -726,6 +913,7 @@ You can't explicitly instantiate an enum
 
 // 36.使用Mixin为类添加功能, Adding features to a class: mixins. Mixins are a way of reusing a class's code in multiple calss hierachies.
 // To use a mixin, use the with keyword followed by one or more mixin names. The following example shows two classes that use mixins:
+/*
 class Musician extends Performer with Musical {
  
 }
@@ -737,9 +925,11 @@ class Maestro extends Person
     canConduct = true;
   }
     }
+    */
 
 // To implement a mixin, create a class that extends Object and declares no constructors. 
 // Unless you want your mixin to be usable as a regular class, use the mixin keyword instead of class
+/*
 mixin Musical {
   bool canPlayPiano = false;
   bool canCompose = false;
@@ -755,11 +945,12 @@ mixin Musical {
     }
   }
 }
+*/
 
 /* Sometimes you might want to restrict the types that can use a mixin. For example, the mixin might depend on being able to 
 invoke a method that the mixin doesn't define. As the following example shows, you can restrict a mixin's use by using the 'on'
 keyword to specify the required superclass:
-*/
+
 class Musician {
 
 }
@@ -769,6 +960,7 @@ mixin MusicalPerformer on Musician {
 class SingerDancer extends Musician with MusicalPerformer {
 
 }
+*/
 // In the preceding code, only classes that extend or implement the Musician class can use the mixin MusicalPerformer
 // SingerDancer can mix in MusicalPerformer because SingerDancer extends Musician.
 
@@ -776,10 +968,12 @@ class SingerDancer extends Musician with MusicalPerformer {
 
 // 37.类变量和方法, Class variables and methods: Use the static keyword to implement class-wide variables and methods
 // Static variables (class variables) are useful for class-wide state and constants:
+/*
 class Queue {
   static const initialCapacity = 16;
   // static variables aren't initialized untill they're used
 }
+*/
 
 /*
 void main() {
@@ -789,7 +983,7 @@ void main() {
 
 /* Static methods(class methods) don't operate on an instance, and thus don' have access to 'this'. 
 They do, however, have access to static variables. As the following example shows, you invoke static methods directly on a class.
-*/
+
 import 'dart:math';
 
 class Point {
@@ -802,6 +996,7 @@ class Point {
     return sqrt(dx * dx + dy * dy);
   }
 }
+*/
 
 /*
 void main() {
@@ -889,7 +1084,7 @@ Stream<int> asynchronousNaturalTo(int n) async* {
 // 41.元数据, Metadata
 /* Use metadata to give additional information about your code. A metadata annotation begins with the character @,
 followed by either a reference to a compile-time constant(such as deprecated) or a call to a constant constructor
-*/
+
 class Television {
   /// Use [turnOn] to turn the power on instead
   @Deprecated('Use turnOn instead')
@@ -900,8 +1095,10 @@ class Television {
   /// Turns the TV's power on
   void turnOn() {}
 }
+*/
 
 // You can define your own metadata annotations. Here's an example of defining a @Todo annotation that takes two arguments:
+/*
 library todo;
 
 class Todo {
@@ -910,15 +1107,17 @@ class Todo {
 
   const Todo(this.who, this.what);
 }
+*/
 
 // And here's an example of using that @Todo annotation:
-imort 'todo.dart';
+/*
+import 'todo.dart';
 
 @Todo('seth', 'make this do something')
 void doSomething() {
   print('do something');
 }
-/* Metadata can appear before a library, class, typedef, type parameter, constructor, factory, function, field, parameter, or
+ Metadata can appear before a library, class, typedef, type parameter, constructor, factory, function, field, parameter, or
 variable declaration and before an import or export directive. You can retrieve metadata at runtime using reflection
 */
 
@@ -931,11 +1130,6 @@ The name in brackets are resolved in the lexical scope of of the documented prog
 */
 
 
-
-void main() {
-  var number = 42; // Declare and initialize a variable.
-// var : To declare a variable without specifying the type
-  printInteger(number); // Call a function.
 
   var insideMain = true;
   
@@ -959,21 +1153,21 @@ void main() {
   assert(add2(3) == 5);
   assert(add4(3) == 7);
 
-  Function x;
+  Function xx;
 
   // Comparing top-level functions
-  x = foo;
-  assert(foo == x);
+  xx = foo;
+  assert(foo == xx);
 
   // Comparing static methos
-  x = A.bar;
-  assert(A.bar == x);
+  xx = A.bar;
+  assert(A.bar == xx);
 
   // Comparing instance methods
   var v = A(); // Instance #1 of A
   var w = A(); // Instance #2 of A
   var y = w;
-  x = w.baz;
+  xx = w.baz;
 
   assert(y.baz == x);
   assert(v.baz != w.baz);
@@ -985,10 +1179,10 @@ void main() {
 
   var a = Point(2, 2);
   var b = Point(4, 4);
-  var distance = Point.distanceBetween(a, b);
+/*var distance = Point.distanceBetween(a, b);
   assert(2.8 < distance && distance < 2.9);
   print(distance);
-}
+*/
 
 
 
