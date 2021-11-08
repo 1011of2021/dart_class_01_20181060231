@@ -355,8 +355,8 @@ assert(coffees.isEmpty);
 assert(teas.isNotEmpty);
 
 // To apply a function to each item in a list, set, or map, you can use forEach():
-var teas2 = ['green', 'black', 'chamomile', 'earl grey'];
-teas2.forEach((tea) => print('I drink $tea'));
+var teas2 = ['green', 'black', 'chamomile', 'earl grey.'];
+teas2.forEach((tea) => print('I drink $tea tea'));
 
 // When you invoke forEach() on a map, your function must take two arguments (the key and value):
 hawaiianBeaches.forEach((k, v) {
