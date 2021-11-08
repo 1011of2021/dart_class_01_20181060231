@@ -2,7 +2,9 @@
 
 // To use this library, import dart:convert.
 import 'dart:convert';
+import 'dart:async';
 
+void main(){
 // Decode a JSON-encoded string into a Dart object with jsonDecode():
 // NOTE: Be sure to use double quotes ("),
 // not single quotes ('), inside the JSON string.
@@ -22,7 +24,7 @@ assert(firstScore is Map);
 assert(firstScore['score'] == 40);
 
 // Encode a supported Dart object into a JSON-formatted string with jsonEncode():
-var scores = [
+var scores2 = [
   {'score': 40},
   {'score': 80},
   {'score': 100, 'overtime': true, 'special_guest': null}
@@ -57,6 +59,7 @@ var funnyWord = utf8.decode(utf8Bytes);
 assert(funnyWord == 'Îñţérñåţîöñåļîžåţîờñ');
 
 // To convert a stream of UTF-8 characters into a Dart string, specify utf8.decoder to the Stream transform() method:
+/*
 var lines = utf8.decoder
     .bind(inputStream)
     .transform(const LineSplitter());
@@ -68,6 +71,7 @@ try {
 } catch (e) {
   print(e);
 }
+*/
 
 // Use utf8.encode() to encode a Dart string as a list of UTF8-encoded bytes:
 List<int> encoded = utf8.encode('Îñţérñåţîöñåļîžåţîờñ');
@@ -77,3 +81,4 @@ for (int i = 0; i < encoded.length; i++) {
   assert(encoded[i] == utf8Bytes[i]);
 }
 
+}

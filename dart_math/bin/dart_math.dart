@@ -6,6 +6,7 @@ Most of the functionality in the Math library is implemented as top-level functi
 // To use this library in your app, import dart:math.
 import 'dart:math';
 
+void main(){
 // The Math library provides basic trigonometric functions:
 // Cosine
 assert(cos(pi) == -1.0);
@@ -34,3 +35,4 @@ random.nextInt(10); // Between 0 and 9.
 
 
 
+}

@@ -9,6 +9,8 @@ The few synchronous methods in the dart:io library are clearly marked with a Syn
 
 // To use the dart:io library you must import it:
 import 'dart:io';
+import 'dart:convert';
+
 
 
 
@@ -38,51 +40,49 @@ Future<void> main() async {
   // Put each line of the file into its own string.
   var lines = await config.readAsLines();
   print('The file is ${lines.length} lines long.');
-}
+
 
 // Reading a file as binary
 // The following code reads an entire file as bytes into a list of ints. 
 // The call to readAsBytes() returns a Future, which provides the result when it’s available.
-Future<void> main() async {
-  var config = File('config.txt');
 
-  var contents = await config.readAsBytes();
+  var config2 = File('config2.txt');
+
+  var contents = await config2.readAsBytes();
   print('The file is ${contents.length} bytes long.');
-}
+
 
 // Handling errors
 // To capture errors so they don’t result in uncaught exceptions, you can register a catchError handler on the Future, or (in an async function) use try-catch:
-Future<void> main() async {
-  var config = File('config.txt');
+
+  var config3 = File('config3.txt');
   try {
-    var contents = await config.readAsString();
+    var contents = await config3.readAsString();
     print(contents);
   } catch (e) {
     print(e);
   }
-}
+
 
 // Streaming file contents
 // Use a Stream to read a file, a little at a time. You can use either the Stream API or await for, part of Dart’s asynchrony support.
-import 'dart:io';
-import 'dart:convert';
 
-Future<void> main() async {
-  var config = File('config.txt');
-  Stream<List<int>> inputStream = config.openRead();
 
-  var lines = utf8.decoder
+  var config4 = File('config4.txt');
+  Stream<List<int>> inputStream = config4.openRead();
+
+  var lines2 = utf8.decoder
       .bind(inputStream)
       .transform(const LineSplitter());
   try {
-    await for (final line in lines) {
+    await for (final line in lines2) {
       print('Got ${line.length} characters from stream');
     }
     print('file is now closed');
   } catch (e) {
     print(e);
   }
-}
+
 
 // Writing file contents
 // You can use an IOSink to write data to a file. Use the File openWrite() method to get an IOSink that you can write to. 
@@ -94,13 +94,13 @@ await sink.flush();
 await sink.close();
 
 // To add to the end of the file, use the optional mode parameter to specify FileMode.append:
-var sink = logFile.openWrite(mode: FileMode.append);
+var sink2 = logFile.openWrite(mode: FileMode.append);
 // To write binary data, use add(List<int> data).
 
 // Listing files in a directory
 // Finding all files and subdirectories for a directory is an asynchronous operation. 
 // The list() method returns a Stream that emits an object when a file or directory is encountered.
-Future<void> main() async {
+
   var dir = Directory('tmp');
 
   try {
@@ -115,7 +115,7 @@ Future<void> main() async {
   } catch (e) {
     print(e.toString());
   }
-}
+
 
 
 
@@ -127,12 +127,12 @@ Future<void> main() async {
 // The following sample web server returns simple text information. 
 // This server listens on port 8888 and address 127.0.0.1 (localhost), responding to requests for the path /dart. 
 // For any other path, the response is status code 404 (page not found).
-Future<void> main() async {
+
   final requests = await HttpServer.bind('localhost', 8888);
   await for (final request in requests) {
-    processRequest(request);
+    //processRequest(request);
   }
-}
+
 
 void processRequest(HttpRequest request) {
   print('Got request for ${request.uri.path}');
@@ -157,7 +157,7 @@ You can set headers, use HTTP methods, and read and write data. The HttpClient c
 When programming in the browser, use the dart:html HttpRequest class. */
 
 // Here’s an example of using HttpClient:
-Future<void> main() async {
+
   var url = Uri.parse('http://localhost:8888/dart');
   var httpClient = HttpClient();
   var request = await httpClient.getUrl(url);
@@ -165,8 +165,8 @@ Future<void> main() async {
   var data = await utf8.decoder.bind(response).toList();
   print('Response ${response.statusCode}: $data');
   httpClient.close();
+
+
 }
-
-
 
 
