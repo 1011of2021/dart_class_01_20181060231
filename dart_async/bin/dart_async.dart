@@ -43,6 +43,7 @@ try {
   // Handle the error...
 }
 
+
 // Basic usage
 /*
 You can use then() to schedule code that runs when the future completes. 
@@ -53,12 +54,14 @@ For example, HttpRequest.getString() returns a Future, since HTTP requests can t
   print(result);
 });
 
+
 // Use catchError() to handle any errors or exceptions that a Future object might throw.
 HttpRequest.getString(url).then((String result) {
   print(result);
 }).catchError((e) {
   // Handle or ignore the error.
 });
+
 
 
 // Chaining multiple asynchronous methods

@@ -12,14 +12,15 @@ void main() {
   var number = 42; // Declare and initialize a variable.
 // var : To declare a variable without specifying the type
   printInteger(number); // Call a function.
-  
+}
 
 
 // 2.变量
-// Object: If an object isn't restricted to a single type, specify the Object type
+/* Object: If an object isn't restricted to a single type, specify the Object type
   var name = 'Bob';
   Object name = 'Bob';
   String name = 'Bob';
+  */
 
 
 
@@ -82,8 +83,8 @@ var s4 = "It's even easier to use the other delimiter."; //while in the sentence
 
 // expressions: use ${expression} to put the value of an expression inside a string, if the expression is an identifier, you can skip the '{}'
 var s = 'string interpolation';
-assert('Dart has $s, which is very handy.' //this is equivelant to 'Dart has string interpolation, which is very handy.')
-assert('That deserves all caps. ${s.toUpperCase()} is very handy!' //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
+assert('Dart has $s, which is very handy.') //this is equivelant to 'Dart has string interpolation, which is very handy.')
+assert('That deserves all caps. ${s.toUpperCase()} is very handy!') //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
 
 // use '+' to connect multiple strings
 var s = 'The + operator ' + 'works, as well.';
@@ -900,6 +901,7 @@ void doSomething() {
 }
 /* Metadata can appear before a library, class, typedef, type parameter, constructor, factory, function, field, parameter, or
 variable declaration and before an import or export directive. You can retrieve metadata at runtime using reflection
+*/
 
 
 
