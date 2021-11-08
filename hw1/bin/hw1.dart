@@ -1,5 +1,6 @@
 /// Dart开发语言概览
 
+
 // 1.一个简单的Dart程序
 // Define a function.
 void printInteger(int aNumber) {
@@ -8,42 +9,47 @@ void printInteger(int aNumber) {
 }
 
 // This is where the app starts executing.
+
 void main() {
   var number = 42; // Declare and initialize a variable.
 // var : To declare a variable without specifying the type
   printInteger(number); // Call a function.
-}
+
+
 
 
 // 2.变量
-/* Object: If an object isn't restricted to a single type, specify the Object type
+//Object: If an object isn't restricted to a single type, specify the Object type
   var name = 'Bob';
-  Object name = 'Bob';
-  String name = 'Bob';
-  */
+//Object name = 'Bob';
+//String name = 'Bob';
+  
 
 
 
 // 3.默认值
 // Assert: In normal time, code ignores the assert(condition) call. Assert throws an exception if the condition is false 
-  int? lineCount;
-  assert(lineCount == null);
+
+int? lineCount;
+assert(lineCount == null);
 
 
 
 // 4.late variables
 // late: When you're sure that a variable is set before it's used, but dart disagrees, you can fix it by marking the variable as late
-  late description
+ 
+  late String description;
   description = 'Feijoada!';
   print(description);
 
+
 // Lazy initializing: When the variable might not be needed, used lazily intitializing will be handy.
-  late String temperature = _readThermometer 
+ //late String temperature = _readThermometer; 
 
 
 
 // 5.final和const
-  final name = 'Bob';
+  final Name = 'Bob';
   final String nickname = 'Bobby'; // With a type annotation
   // name = 'Alice' (x). A final variable can be only set once. 
 
@@ -58,6 +64,8 @@ void main() {
 // baz = [42];(x) Cuz const variables can't be assigned a value.  
 
 // 'is' is for typechecks, and 'as' is for typecasts
+
+const Object i = 3; // Where i is a const Object with an int value
 const list = [i as int]; //typecast
 const map = {if (i is int) i: 'int'}; //use 'is' as typecheck and collection if
 
@@ -83,23 +91,23 @@ var s4 = "It's even easier to use the other delimiter."; //while in the sentence
 
 // expressions: use ${expression} to put the value of an expression inside a string, if the expression is an identifier, you can skip the '{}'
 var s = 'string interpolation';
-assert('Dart has $s, which is very handy.') //this is equivelant to 'Dart has string interpolation, which is very handy.')
-assert('That deserves all caps. ${s.toUpperCase()} is very handy!') //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
+assert('Dart has $s, which is very handy.'); //this is equivelant to 'Dart has string interpolation, which is very handy.')
+assert('That deserves all caps. ${s.toUpperCase()} is very handy!'); //euivelant to 'That deserves all caps. STRING INTERPOLATION is very handy!')
 
 // use '+' to connect multiple strings
-var s = 'The + operator ' + 'works, as well.';
-assert(s == 'The + operator works, as well.');
+var ss = 'The + operator ' + 'works, as well.';
+assert(ss == 'The + operator works, as well.');
 
 // multi-line strings
-var s1 = '''
+var s11 = '''
 You can create
 multi-line strings like this one.
 ''';
-var s2 = """This is also a 
+var s22 = """This is also a 
 multi-line string.""";
 
 // raw string: You can create a "raw" string by prefixing it with r add a prefix "r". 
-var s = r'In a raw string, nothing will be treat specially, not even \n gets special treatment, '\n' will be output instead of wrap. '
+var sn = r'In a raw string, nothing will be treat specially, not even \n gets special treatment, \n will be output instead of wrap. ';
 
 
 
@@ -121,17 +129,17 @@ assert(iMeantToDoThis.isNaN);
 
 
 // 9.Lists
-var list = [1, 2, 3];
+var listn = [1, 2, 3];
 // list has type list<int>.If you try to add non-integer objects to this list, the analyzer or runtime raises an error
 var constantList = const [1, 2, 3];
 // constantList[1] = 1; //This line will cause an error, because it's a compile-time constant
 // spread operator(...)
-var list = [1, 2, 3];
+var listnn = [1, 2, 3];
 var list2 = [0, ...list];
 assert(list2.length == 4);
 // if the right of the spread operator might be null, you can avoid exceptions by using a null-aware spread operator(...?)
-var list;
-var list2 = [0, ...?list];
+var listnn;
+var listnn2 = [0, ...?list];
 assert(list2.length = 1);
 // collection if
 var nav = [
@@ -355,6 +363,7 @@ You can "follow the curly braces outwards" to see if a variable is in scope.
 
 // Here's an example of nested functions with variables at each scope level:
 bool topLevel = true;
+/*
 void main() {
   var insideMain = true;
   
@@ -372,7 +381,7 @@ void main() {
     }
   }
 }
-
+*/
 
 
 // 19.词法闭包, Lexical closures
@@ -381,6 +390,7 @@ void main() {
 Function makeAdder(int addBy) {
   return (int i) => addBy + i;
 }
+/*
 void main() {
   var add2 = makeAdder(2);
   var add4 = makeAdder(4);
@@ -388,6 +398,7 @@ void main() {
   assert(add2(3) == 5);
   assert(add4(3) == 7);
 }
+*/
 
 
 
@@ -400,6 +411,7 @@ class A {
   void baz() {} // An instance method
 }
 
+/*
 void main() {
   Function x;
 
@@ -420,6 +432,7 @@ void main() {
   assert(y.baz == x);
   assert(v.baz != w.baz);
 }
+*/
 
 
 
@@ -631,10 +644,12 @@ class Impostor implements Person {
 
 String greetBob(Person person) => person.greet('Bob');
 
+/*
 void main() {
     print(greetBob(Person('Kathy')));
     print(greetBob(Impostor()));
 }
+*/
 
 
 
@@ -766,9 +781,11 @@ class Queue {
   // static variables aren't initialized untill they're used
 }
 
+/*
 void main() {
   assert(Queue.initialCapacity == 16);
 }
+*/
 
 /* Static methods(class methods) don't operate on an instance, and thus don' have access to 'this'. 
 They do, however, have access to static variables. As the following example shows, you invoke static methods directly on a class.
@@ -786,6 +803,7 @@ class Point {
   }
 }
 
+/*
 void main() {
   var a = Point(2, 2);
   var b = Point(4, 4);
@@ -793,6 +811,7 @@ void main() {
   assert(2.8 < distance && distance < 2.9);
   print(distance);
 }
+*/
 
 
 
@@ -910,3 +929,72 @@ variable declaration and before an import or export directive. You can retrieve 
 Using brackets, you can refer to classes, methods, fields, top-level variables, functions, and parameters. 
 The name in brackets are resolved in the lexical scope of of the documented program element.
 */
+
+
+
+void main() {
+  var number = 42; // Declare and initialize a variable.
+// var : To declare a variable without specifying the type
+  printInteger(number); // Call a function.
+
+  var insideMain = true;
+  
+  void myFunction() {
+    var insideFunction = true;
+
+    void nestedFunction() {
+      var insideNestedFunction = true;
+
+      assert(topLevel);
+      assert(insideMain);
+      assert(insideFunction);
+      assert(insideNestedFunction);
+      // Notice how nestedFunction() can use variables from every level, all the way up to the top level.  
+    }
+  }
+
+  var add2 = makeAdder(2);
+  var add4 = makeAdder(4);
+
+  assert(add2(3) == 5);
+  assert(add4(3) == 7);
+
+  Function x;
+
+  // Comparing top-level functions
+  x = foo;
+  assert(foo == x);
+
+  // Comparing static methos
+  x = A.bar;
+  assert(A.bar == x);
+
+  // Comparing instance methods
+  var v = A(); // Instance #1 of A
+  var w = A(); // Instance #2 of A
+  var y = w;
+  x = w.baz;
+
+  assert(y.baz == x);
+  assert(v.baz != w.baz);
+
+    print(greetBob(Person('Kathy')));
+    print(greetBob(Impostor()));
+
+  assert(Queue.initialCapacity == 16);
+
+  var a = Point(2, 2);
+  var b = Point(4, 4);
+  var distance = Point.distanceBetween(a, b);
+  assert(2.8 < distance && distance < 2.9);
+  print(distance);
+}
+
+
+
+}
+
+
+
+
+
